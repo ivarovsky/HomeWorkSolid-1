@@ -9,6 +9,8 @@ class HomeWorkSolidController extends Controller
 {
     public function index(Request $request)
     {
+        
+
         $url = 'https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=';
         $search = 'Продукти Одеса';
         $exclude_place_ids = '';

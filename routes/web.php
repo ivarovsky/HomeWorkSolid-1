@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () 
+{
     return view('welcome');
 });
 
 Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidController::class, 'index']);
+
+Route::get('/homeWorkSolid2', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
