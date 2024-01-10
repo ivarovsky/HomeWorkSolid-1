@@ -1,17 +1,32 @@
 <?php 
 namespace App\Map;
 
+use App\Coordinates;
 use GuzzleHttp\Client as GuzzleClient;
+use App\Coordinates\CoordinatesCalculator;
 
-class MapFinder extends GuzzleClient implements Map  
+class MapFinder implements Map  
 {
 	private $url='https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=';
+	private $request_client;
 	private $search;
     private $lat;
     private $lon;
+    private $coordinates_calculator;
     private $properties;
-    private $exclude_place_ids;
+    private array $exclude_place_ids;
     private $places;
+
+    public function __construct($calculator = new CoordinatesCalculator)
+    {
+    	$this->coordinates_calculator = $calculator;
+    }
+
+    public function setRequest_client($r)
+    	{
+    		$this->request_client = $r;
+    		return $this;
+    	}
 
 	public function setUrl($u)
 		{
@@ -38,8 +53,7 @@ class MapFinder extends GuzzleClient implements Map
 		{
 		foreach ($this->places as $place)
 			{
-	            $res = 2 * asin(sqrt(pow(sin(($this->lat - $place->lat) / 2), 2) + cos($this->lat) * cos($place->lat) * pow(sin(($this->lon - $place->lon) / 2), 2)));
-	            $place->distance = $res;
+	            $place->distance = $this->coordinates_calculator->distanceCalculator(["lat"=>$this->lat,"lon"=>$this->lon],["lat"=>$place->lat,"lon"=>$place->lon]);
 	        }
 		}
 	private function SortByDistance()
@@ -50,7 +64,8 @@ class MapFinder extends GuzzleClient implements Map
 		}
 	private function SetExludePlaces()
 		{
-			$this->exclude_place_ids='&exclude_place_ids=' . urlencode(implode(',', array_keys($this->places)));
+			if(!isset($this->exclude_place_ids)) $this->exclude_place_ids = array_keys($this->places);
+			else $this->exclude_place_ids=array_merge($this->exclude_place_ids, array_keys($this->places));
 		}
 	private function FilterKeys()
 		{
@@ -64,9 +79,17 @@ class MapFinder extends GuzzleClient implements Map
 	    	$this->places);
 	    	$this->places = array_combine(array_keys($this->places), array_values($this->places));
 		}
+		private function getUrl()
+		{
+			$result = $this->url . urlencode($this->search);
+			if(isset($this->exclude_place_ids)) $result .= '&exclude_place_ids=' .urlencode(implode(',', array_keys($this->exclude_place_ids))) ;
+			return $result;
+			
+		}
+
 	public function search()
 	{
-		$response = parent::request('GET', $this->url . urlencode($this->search) . $this->exclude_place_ids);
+		$response = $this->request_client->request('GET', $this->getUrl());
         $this->places = json_decode($response->getBody()->getContents());
 		if(count($this->places))
 		{
