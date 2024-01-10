@@ -17,8 +17,9 @@ class MapFinder implements Map
     private array $exclude_place_ids;
     private $places;
 
-    public function __construct($calculator = new CoordinatesCalculator)
+    public function __construct($calculator = new CoordinatesCalculator,$Client = new GuzzleClient)
     {
+    	$this->request_client = $Client;
     	$this->coordinates_calculator = $calculator;
     }
 

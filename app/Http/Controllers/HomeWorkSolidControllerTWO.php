@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client as GuzzleClient;
+
 
 use App\Map\Map;
 use App\Map\MapFinder;
@@ -19,7 +19,7 @@ class HomeWorkSolidControllerTWO extends Controller
 
         
      	$find = new MapFinder;
-        $find->setRequest_client(new GuzzleClient)->setSearch('Продукти Одеса')->setCoordinate(46.4774700,30.7326200)->setProperties(['place_id', 'name', 'display_name', 'distance']);
+        $find->setSearch('Продукти Одеса')->setCoordinate(46.4774700,30.7326200)->setProperties(['place_id', 'name', 'display_name', 'distance']);
 
         $places=$find->search();
         dump($places);
