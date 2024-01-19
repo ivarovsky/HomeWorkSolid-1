@@ -2,5 +2,5 @@
 namespace App\Coordinates;
 interface Coordinates 
 {
-	public function distanceCalculator();
+	public function distanceCalculator($lat,$lon);
 }

@@ -2,30 +2,32 @@
 namespace App\Map;
 
 use App\Coordinates;
-use GuzzleHttp\Client as GuzzleClient;
-use App\Coordinates\CoordinatesCalculator;
+
 
 class MapFinder implements Map  
 {
-	private $url='https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=';
+	private $url;
 	private $request_client;
 	private $search;
-    private $lat;
-    private $lon;
+
     private $coordinates_calculator;
     private $properties;
     private array $exclude_place_ids;
     private $places;
 
-    public function __construct($calculator = new CoordinatesCalculator,$Client = new GuzzleClient)
+    public function __construct()
     {
-    	$this->request_client = $Client;
-    	$this->coordinates_calculator = $calculator;
     }
 
-    public function setRequest_client($r)
+    public function setRequestClient($r)
     	{
     		$this->request_client = $r;
+    		return $this;
+    	}
+
+    public function setCoordinatesCalculator($s)
+    	{
+    		$this->coordinates_calculator = $s;
     		return $this;
     	}
 
@@ -39,12 +41,6 @@ class MapFinder implements Map
 			$this->search = $s;
 			return $this;
 		}
-	public function setCoordinate($lat,$lon)
-		{
-			$this->lat = $lat;
-			$this->lon = $lon;
-			return $this;
-		}
 	public function setProperties(array $properties)
 		{
 			$this->properties = $properties;
@@ -54,7 +50,7 @@ class MapFinder implements Map
 		{
 		foreach ($this->places as $place)
 			{
-	            $place->distance = $this->coordinates_calculator->distanceCalculator(["lat"=>$this->lat,"lon"=>$this->lon],["lat"=>$place->lat,"lon"=>$place->lon]);
+	            $place->distance = $this->coordinates_calculator->distanceCalculator($place->lat,$place->lon);
 	        }
 		}
 	private function SortByDistance()

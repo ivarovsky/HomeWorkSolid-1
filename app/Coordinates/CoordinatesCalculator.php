@@ -2,9 +2,17 @@
 namespace App\Coordinates;
 class CoordinatesCalculator implements Coordinates 
 	{
+		private $lat;
+		private $lon;
+
+		public function __construct($lat,$lon)
+		{
+			$this->lat = $lat;
+			$this->lon = $lon;
+		}
 		
-		public function distanceCalculator(array $start = ["lat"=>0,"lon"=>0],array $end = ["lat"=>0,"lon"=>0])
+		public function distanceCalculator($lat,$lon)
 			{
-				return 2 * asin(sqrt(pow(sin(($start['lat'] - $end['lat']) / 2), 2) + cos($start['lat']) * cos($end['lat']) * pow(sin(($start['lon'] - $end['lon']) / 2), 2)));
+				return 2 * asin(sqrt(pow(sin(($this->lat - $lat) / 2), 2) + cos($this->lat) * cos($lat) * pow(sin(($this->lon - $lon) / 2), 2)));
 			}
 	}
