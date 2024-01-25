@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () 
 {
-    return view('welcome');
+	echo "okay";
 });
 
 Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
 
 
-/*
-Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidController::class, 'index']);
 
-Route::get('/homeWorkSolid2', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
-*/
+Route::get('/homeWorkServiceContainers', [App\Http\Controllers\HomeWorkServiceContainers::class, 'index']);

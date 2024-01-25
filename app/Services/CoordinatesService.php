@@ -1,7 +1,12 @@
-<?php 
-namespace App\Coordinates;
-class CoordinatesCalculator implements Coordinates 
-	{
+<?php
+
+namespace App\Services;
+
+/**
+ * Class Coordinates.
+ */
+class Coordinates
+{
 		private $lat;
 		private $lon;
 
@@ -15,4 +20,4 @@ class CoordinatesCalculator implements Coordinates
 			{
 				return 2 * asin(sqrt(pow(sin(($this->lat - $lat) / 2), 2) + cos($this->lat) * cos($lat) * pow(sin(($this->lon - $lon) / 2), 2)));
 			}
-	}
+}
