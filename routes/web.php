@@ -20,6 +20,7 @@ Route::get('/', function ()
 
 Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
 
+Route::get('/testdb', [App\Http\Controllers\testdb::class, 'index']);
 
 
 Route::get('/homeWorkServiceContainers', [App\Http\Controllers\HomeWorkServiceContainers::class, 'index']);

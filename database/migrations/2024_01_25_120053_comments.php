@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
+            Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_active')->default(true);
-            $table->foreign('name')->references('id')->on('authors');
+            $table->unsignedBigInteger('author_id')->foreign('author_id')->references('id')->on('authors');
+            $table->text('text');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+            Schema::dropIfExists('comments');
     }
 };
