@@ -14,13 +14,13 @@ return new class extends Migration
                 Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_active')->default(true);
-            $table->timestamp('publication_date');
+            $table->timestamp('publication_date')->default(now());
             
             $table->unsignedBigInteger('category_id')->foreign('category_id')->references('id')->on('categories');
             
             $table->unsignedBigInteger('author_id')->foreign('author_id')->references('id')->on('authors');
-            $table->string('name');
-            $table->text('text');
+            $table->string('name',128);
+            $table->text('text',1024);
             $table->timestamps();
         });
     }

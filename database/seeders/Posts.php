@@ -25,22 +25,13 @@ class Posts extends Seeder
         $category = Category::find(1);
 
                 DB::table('posts')->insert([
+                    'publication_date'=>now(),
             'category_id'=>$category->id,
-            'author_id' => $autor->id,
+            'author_id' => $author->id,
             'name'=>'TEST POST',
             'text' => "TEST POST TEXT"
 
         ]);
 
-        /*
- $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('author_id')->references('id')->on('authors');
-
-
-            $table->string('name');
-            $table->text('text');
-
-
-        */
     }
 }
