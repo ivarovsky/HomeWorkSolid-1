@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('author_id')->foreign('author_id')->references('id')->on('authors');
+            $table->unsignedBigInteger('post_id')->foreign('post_id')->references('id')->on('posts');
             $table->text('text',512);
             $table->timestamps();
         });
