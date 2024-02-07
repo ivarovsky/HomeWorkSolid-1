@@ -61,26 +61,27 @@ class MapService
 	private function SetExludePlaces()
 		{
 			if(!isset($this->exclude_place_ids)) $this->exclude_place_ids = array_keys($this->places);
+
 			else $this->exclude_place_ids=array_merge($this->exclude_place_ids, array_keys($this->places));
+		
 		}
 	private function FilterKeys()
 		{
-	        $this->places = array_map(
-	        		function ($place) 
-	        				{
-	        				$filtered = (object)array_intersect_key((array)$place, array_flip($this->properties));
-	        				$this->places[$place->place_id] = $filtered;
-	        				return $filtered;
-	    					}, 
-	    	$this->places);
-	    	$this->places = array_combine(array_keys($this->places), array_values($this->places));
+		    $this->places = array_map(
+		        function ($place) {
+		            $filtered = (object) array_intersect_key((array) $place, array_flip($this->properties));
+		            return $filtered;
+		        },
+		        $this->places
+		    );
+
+		    $this->places = array_combine(array_column($this->places, 'place_id'), $this->places);
 		}
 		private function getUrl()
 		{
 			$result = $this->url . urlencode($this->search);
-			if(isset($this->exclude_place_ids)) $result .= '&exclude_place_ids=' .urlencode(implode(',', array_keys($this->exclude_place_ids))) ;
+			if(isset($this->exclude_place_ids)) $result .= '&exclude_place_ids=' .urlencode(implode(',', $this->exclude_place_ids)) ;
 			return $result;
-			
 		}
 
 	public function search()

@@ -18,6 +18,9 @@ Route::get('/', function ()
 	echo "okay";
 });
 
+Route::get('/homeWorkSolid0', [App\Http\Controllers\HomeWorkSolidController::class, 'index']);
+
+
 Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
 
 Route::get('/testdb', [App\Http\Controllers\testdb::class, 'index']);

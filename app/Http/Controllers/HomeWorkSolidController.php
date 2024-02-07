@@ -61,6 +61,7 @@ class HomeWorkSolidController extends Controller
         dump($places);
 
         // for new search without this places
+
         goto start;
     }
 }
