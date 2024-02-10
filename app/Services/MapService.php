@@ -5,7 +5,7 @@ namespace App\Services;
 /**
  * Class Map.
  */
-class MapService
+class MapService implements Map
 {
 	private $url;
 	private $request_client;
@@ -16,28 +16,26 @@ class MapService
     private array $exclude_place_ids;
     private $places;
 
-    	public function __construct(){return $this;}
-
-     public function setRequestClient($r)
+     public function setRequestClient($client)
     	{
-    		$this->request_client = $r;
+    		$this->request_client = $client;
     		return $this;
     	}
 
-    public function setCoordinatesCalculator($s)
+    public function setCoordinatesCalculator($calculator)
     	{
-    		$this->coordinates_calculator = $s;
+    		$this->coordinates_calculator = $calculator;
     		return $this;
     	}
 
-	public function setUrl($u)
+	public function setUrl($url)
 		{
-			$this->url = $u;
+			$this->url = $url;
 			return $this;
 		}
-	public function setSearch($s)
+	public function setSearch($search)
 		{
-			$this->search = $s;
+			$this->search = $search;
 			return $this;
 		}
 	public function setProperties(array $properties)

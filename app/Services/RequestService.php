@@ -5,7 +5,7 @@ namespace App\Services;
 /**
  * Class Request.
  */
-class RequestService
+class RequestService implements Request
 {
 
 	private $request_client;

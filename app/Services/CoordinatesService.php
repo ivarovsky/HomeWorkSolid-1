@@ -5,7 +5,7 @@ namespace App\Services;
 /**
  * Class Coordinates.
  */
-class CoordinatesService
+class CoordinatesService implements Coordinates
 {
 		private $lat;
 		private $lon;
