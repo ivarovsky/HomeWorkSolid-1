@@ -36,6 +36,8 @@ class MapService implements Map
 	public function setSearch($search)
 		{
 			$this->search = $search;
+			$this->exclude_place_ids = ($this->search == $search) ? [] : $this->exclude_place_ids;
+
 			return $this;
 		}
 	public function setProperties(array $properties)
@@ -59,7 +61,6 @@ class MapService implements Map
 	private function SetExludePlaces()
 		{
 			if(!isset($this->exclude_place_ids)) $this->exclude_place_ids = array_keys($this->places);
-			//else $this->exclude_place_ids=array_merge($this->exclude_place_ids, array_keys($this->places));
 			else $this->exclude_place_ids=array_merge($this->exclude_place_ids, array_keys($this->places));
 		
 		}

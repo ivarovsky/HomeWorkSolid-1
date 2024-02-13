@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () 
-{
-	echo "okay";
-});
+Route::get('/', [App\Http\Controllers\LinkMinimizerController::class, 'index']);
 
 Route::get('/homeWorkSolid0', [App\Http\Controllers\HomeWorkSolidController::class, 'index']);
 
@@ -26,11 +23,10 @@ Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidControllerTWO::c
 Route::get('/testdb', [App\Http\Controllers\testdb::class, 'index']);
 
 
+
 Route::get('/homeWorkServiceContainers', [App\Http\Controllers\HomeWorkServiceContainers::class, 'index']);
 
-
 Route::get('/blog', 'App\Http\Controllers\BlogController@getBlog');
-
 
 Route::get('/blog/addCategory', 'App\Http\Controllers\BlogCategoryController@addCategory');
 
@@ -41,3 +37,8 @@ Route::get('/blog/deleteComment', 'App\Http\Controllers\BlogCommentController@de
 Route::get('/blog/{categoryId}', 'App\Http\Controllers\BlogCategoryController@getCategories');
 
 Route::get('/blog/{categoryId}/{postId}', 'App\Http\Controllers\BlogPostController@getPosts');
+
+
+/*FOR LINK MINIMIZER*/
+Route::get('/{Link}', [App\Http\Controllers\LinkMinimizerController::class, 'redirect']);
+/*FOR LINK MINIMIZER*/
