@@ -13,13 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< Updated upstream
 Route::get('/', function () 
 {
 	echo "okay";
 });
+=======
 
+
+Route::get('/', [App\Http\Controllers\LinkMinimizerController::class, 'index']);
+Route::get('/{LinkSignature}', [App\Http\Controllers\LinkMinimizerController::class, 'redirect']);
+>>>>>>> Stashed changes
+
+
+/*
 Route::get('/homeWorkSolid0', [App\Http\Controllers\HomeWorkSolidController::class, 'index']);
-
 
 Route::get('/homeWorkSolid', [App\Http\Controllers\HomeWorkSolidControllerTWO::class, 'index']);
 
@@ -41,3 +49,14 @@ Route::get('/blog/deleteComment', 'App\Http\Controllers\BlogCommentController@de
 Route::get('/blog/{categoryId}', 'App\Http\Controllers\BlogCategoryController@getCategories');
 
 Route::get('/blog/{categoryId}/{postId}', 'App\Http\Controllers\BlogPostController@getPosts');
+<<<<<<< Updated upstream
+=======
+*/
+
+/*FOR LINK MINIMIZER*/
+//S
+/*FOR LINK MINIMIZER*/
+
+
+
+>>>>>>> Stashed changes
