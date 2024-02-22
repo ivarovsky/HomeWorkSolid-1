@@ -30,13 +30,9 @@ try {
     		dd($LinkMinimizer->MinimizeLink());
     
     } catch (\Illuminate\Validation\ValidationException $e) 
-    {        
-        throw new LinkValidationException($e->getMessage());
-    }
-
-
-//$e->getMessage()
-
+        {
+            throw new LinkValidationException($e->getMessage());
+        }
 
 
 	}
@@ -47,7 +43,7 @@ try {
     	$LinkMinimizer->setLinkSignature($linkSignature);
     	try {
             return redirect()->away($LinkMinimizer->RedirectToLink()) ?? false;
-         //   throw new InvalidArgumentException("Error Processing Request", 1);
+
             
         } catch (InvalidArgumentException $e) 
         {
