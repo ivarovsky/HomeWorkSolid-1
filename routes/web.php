@@ -13,17 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< Updated upstream
-Route::get('/', function () 
-{
-	echo "okay";
-});
-=======
 
 
-Route::get('/', [App\Http\Controllers\LinkMinimizerController::class, 'index']);
+
+Route::get('/', [App\Http\Controllers\LinkMinimizerController::class, 'index'])->middleware('validate.link');
 Route::get('/{LinkSignature}', [App\Http\Controllers\LinkMinimizerController::class, 'redirect']);
->>>>>>> Stashed changes
+
 
 
 /*
@@ -59,4 +54,3 @@ Route::get('/blog/{categoryId}/{postId}', 'App\Http\Controllers\BlogPostControll
 
 
 
->>>>>>> Stashed changes
