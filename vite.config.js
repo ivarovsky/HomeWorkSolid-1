@@ -8,4 +8,8 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Добавляем скрипт сборки
+    build: {
+        // Дополнительные настройки сборки
+    }
 });
