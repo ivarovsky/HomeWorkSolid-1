@@ -12,26 +12,16 @@ use Illuminate\Support\Str;
 use App\Models\Author;
 use App\Models\Category;
 
+use App\Models\Post;
 
-class Posts extends Seeder
+
+class PostsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
-        $author = Author::find(1);
-        $category = Category::find(1);
-
-                DB::table('posts')->insert([
-                    'publication_date'=>now(),
-            'category_id'=>$category->id,
-            'author_id' => $author->id,
-            'name'=>'TEST POST',
-            'text' => "TEST POST TEXT"
-
-        ]);
-
+        Post::factory(1000)->create();
     }
 }

@@ -39,6 +39,9 @@ Route::get('/blog/addCategory', 'App\Http\Controllers\BlogCategoryController@add
 
 Route::get('/blog/updatePost', 'App\Http\Controllers\BlogPostController@updatePost');
 
+Route::get('/blog/createComment', 'App\Http\Controllers\BlogCommentController@createComment');
+
+
 Route::get('/blog/deleteComment', 'App\Http\Controllers\BlogCommentController@deleteComment');
 
 Route::get('/blog/{categoryId}', 'App\Http\Controllers\BlogCategoryController@getCategories');

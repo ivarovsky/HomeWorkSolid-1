@@ -9,16 +9,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Models\Category;
 
-class Authors extends Seeder
+class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('authors')->insert([
-            'name' => "Тест	Author"
-        ]);
+		Category::factory(1000)->create();
     }
 }

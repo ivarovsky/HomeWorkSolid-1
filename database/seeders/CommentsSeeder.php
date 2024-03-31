@@ -9,15 +9,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class Categories extends Seeder
+use App\Models\Author;
+use App\Models\Post;
+
+use App\Models\Comment;
+
+
+
+class CommentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            'name' => "TEST CATEGORY",
-        ]);
+        Comment::factory(1000)->create();
     }
 }

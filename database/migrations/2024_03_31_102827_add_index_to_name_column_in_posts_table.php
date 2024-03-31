@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('is_active')->default(true);
-            $table->string('name',128);
-            $table->timestamps();
-        });
+            Schema::table('posts', function (Blueprint $table) {
+               $table->index('name');
+            });
     }
 
     /**
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+            Schema::table('posts', function (Blueprint $table) {
+                $table->dropIndex(['name']);
+            });
     }
 };

@@ -10,24 +10,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 use App\Models\Author;
-use App\Models\Post;
 
 
-class Comments extends Seeder
+class AuthorsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-    	$author = Author::find(1);
-        $post = Post::find(1);
-
-
-        DB::table('comments')->insert([
-            'text' => "TEST Comment",
-            'author_id' => $author->id,
-            'post_id' =>$post->id
-        ]);
+     	Author::factory(1000)->create();
     }
 }
